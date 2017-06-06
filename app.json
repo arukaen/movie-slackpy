@@ -1,8 +1,8 @@
 {
-  "name": " movie-slackpy",
+  "name": "movie-slackpy",
   "description": "Custom command for Slack to retrieve info about a movie.",
-  "repository": "https://github.com/arukaen/ movie-slackpy",
-  "website": "https://github.com/arukaen/ movie-slackpy",
+  "repository": "https://github.com/arukaen/movie-slackpy",
+  "website": "https://github.com/arukaen/movie-slackpy",
   "keywords": ["slack", "command", "bot", "chat", "movie", "imdb", "cinema", "films", "tmdb"],
   "env": {
     "SLACK_WEBHOOK_URL": {
