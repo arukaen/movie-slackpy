@@ -1,9 +1,9 @@
 <img align="right" src="http://i.imgur.com/Xk1qB3A.png" height="389" width="176">
 
-# movie-slackpy : Custom slash command for Slack
+# movie-slackpy : Custom command for Slack
 
 ## What is it?
-A script in Python that lets you easily share/lookup a movie in Slack.
+A script in Python that lets you easily share/lookup a movie in Slack. This is my first attempt at some python development so please excuse any noobness :)
 
 ## Setting up Slack
 1. Create a Slack [Incoming Webhook](https://my.slack.com/services/new/incoming-webhook/). Take note of the Webhook URL as that is important. The rest of the settings are not.
@@ -28,3 +28,4 @@ I am open to all feedback, bug reports, and pull requests!
 
 ## To-do
 - [ ] Add `tv` show support. 
+- [ ] Add tests.
