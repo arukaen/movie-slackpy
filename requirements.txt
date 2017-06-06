@@ -1,0 +1,4 @@
+flask
+gunicorn
+tmdbsimple
+requests
