@@ -13,11 +13,6 @@ tmdbKey = os.getenv('TMDB_API_KEY')
 
 app = Flask(__name__)
 
-@app.before_request
-def logRequest():
-	data = json.dumps(parse_qs(request.get_data(as_text=True)), indent=2, sort_keys=True)
-	app.logger.info('%s', data)
-
 @app.route('/', methods=['POST'])
 def index():
 	movieQuery = request.form.get('text', None)
