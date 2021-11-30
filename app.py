@@ -56,6 +56,7 @@ def index():
 	}
 
 	slack_post = requests.post(hookURL, json=slack_data, headers={'Content-Type': 'application/json'})
+	print(slack_data)
 
 	if slack_post.status_code != 200:
 		raise ValueError(
