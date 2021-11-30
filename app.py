@@ -30,7 +30,7 @@ def index():
 		"title": search.results[0]['title'],
 		"title_link": 'https://www.themoviedb.org/movie/' + str(search.results[0]['id']) + '-' + search.results[0]['title'].lower(),
 		"color": '#FFB10A',
-		"image_url": 'https://image.tmdb.org/t/p/w640' + search.results[0]['poster_path'],
+		"image_url": 'https://image.tmdb.org/t/p/w500' + search.results[0]['poster_path'],
 		"fields": [{
 		  "title": 'Rating',
 		  "value": str(search.results[0]['vote_average']) + ' (' + str(search.results[0]['vote_count']) + ' votes)',
