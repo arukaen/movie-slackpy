@@ -6,13 +6,6 @@ def handler(event, context):
       'body': 'Method Not Allowed',
     }
 
-  # Ensure the request content-type is "application/x-www-form-urlencoded"
-  if event['headers']['content-type'] != 'application/x-www-form-urlencoded':
-    return {
-      'statusCode': 400,
-      'body': 'Bad Request',
-    }
-
   # Parse the form data
   body = parse_qs(event['body'])
   
