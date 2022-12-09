@@ -1,3 +1,5 @@
+from urllib.parse import parse_qs
+
 def handler(event, context):
   # Ensure the request method is POST
   if event['httpMethod'] != 'POST':
