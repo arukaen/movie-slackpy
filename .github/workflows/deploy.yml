@@ -1,0 +1,41 @@
+name: Deploy Lambda Function
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+        node-version: [16.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Use Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install Serverless Framework
+        run: npm install -g serverless
+        
+      - name: Configure Serverless
+        run: sls config credentials --provider aws --key ${{ secrets.AWS_TF_GH_ACCESS_KEY }} --secret ${{ secrets.AWS_TF_GH_SECRET_ACCESS_KEY }}
+
+      - name: Install packages
+        run: yarn install
+
+      - name: Deploy
+        run: sls deploy --stage prod

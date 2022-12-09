@@ -1,0 +1,49 @@
+service: movie-slackpy
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+  endpointType: REGIONAL
+  deploymentBucket:
+    name: com.serverless.techfury.deploys
+    serverSideEncryption: AES256
+
+custom:
+  customDomain:
+    domainName: ${file(./config/${opt:stage, 'stage'}.yml):DOMAIN_NAME}
+    basePath: moviepy
+    stage: ${opt:stage, 'stage'}
+    createRoute53Record: false
+    endpointType: regional
+  prune:
+    automatic: true
+    number: 3      
+
+functions:
+  main:
+    name: ${sls:stage}-movie-slackpy
+    handler: main.handler
+    events:
+      - http:
+          path: /
+          method: POST
+      - http:
+          path: /{proxy+}
+          method: POST
+
+package:
+  individually: true
+  patterns:
+    - '!node_modules/**'
+    - '!config/**'    
+
+plugins:
+  - serverless-python-requirements
+  - serverless-domain-manager
+  - serverless-prune-plugin
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
