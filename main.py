@@ -12,7 +12,7 @@ def handler(event, context):
   body = parse_qs(event['body'])
   
   for k, v in body.items():
-      print(f'{key}: {value}')
+      print(f'{k}: {v}')
 
   # Do something with the form data
 
