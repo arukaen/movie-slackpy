@@ -41,9 +41,5 @@ package:
     - '!config/**'    
 
 plugins:
-  - serverless-python-requirements
   - serverless-domain-manager
   - serverless-prune-plugin
-custom:
-  pythonRequirements:
-    dockerizePip: non-linux
