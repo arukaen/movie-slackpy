@@ -3,13 +3,13 @@
   "description": "Custom command for Slack to retrieve info about a movie.",
   "repository": "https://github.com/arukaen/movie-slackpy",
   "website": "https://github.com/arukaen/movie-slackpy",
-  "keywords": ["slack", "command", "bot", "chat", "movie", "imdb", "cinema", "films", "tmdb"],
+  "keywords": ["slack", "command", "bot", "chat", "movie", "imdb", "cinema", "films", "omdb", "imdb"],
   "env": {
     "SLACK_WEBHOOK_URL": {
       "description": "URL for Slack incoming webhook",
       "required": true
     },
-    "TMDB_API_KEY": {
+    "OMDB_API_KEY": {
       "description": "Your API key for https://www.themoviedb.org/",
       "required": true
     },
