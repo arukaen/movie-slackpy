@@ -1,0 +1,11 @@
+{
+  "name": "movie-slackpy",
+  "version": "2.0.0",
+  "repository": "git@github.com:arukaen/movie-slackpy.git",
+  "author": "arukaen <arukaen@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-domain-manager": "^6.2.1",
+    "serverless-prune-plugin": "^2.0.1"
+  }
+}
