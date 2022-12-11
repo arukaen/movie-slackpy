@@ -30,7 +30,7 @@ functions:
     name: ${sls:stage}-movie-slackpy
     handler: main.handler
     environment:
-      BOT_NAME: "Hal9000"
+      BOT_NAME: "HAL 9000"
       EMOJI: ":hal_9000:"
       SLACK_WEBHOOK_URL: ${self:custom.ssm.SLACK_WEBHOOK_URL} 
       OMDB_API_KEY: ${self:custom.ssm.OMDB_API_KEY}
