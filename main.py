@@ -12,7 +12,7 @@ slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL')
 def omdb_query(movie):
     payload = {'apikey': omdb_key, 't': movie}
     response = requests.get(omdb_url, params=payload)
-    result = json.loads(response.txt)
+    result = json.loads(response.text)
     return result
 
 def handler(event, context):
