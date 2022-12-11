@@ -23,11 +23,17 @@ custom:
     number: 3      
   pythonRequirements:
     dockerizePip: non-linux
+  ssm: ${ssm:/aws/reference/secretsmanager/${opt:stage,'stage'}/moviepy-slack}
 
 functions:
   main:
     name: ${sls:stage}-movie-slackpy
     handler: main.handler
+    environment:
+      BOT_NAME: "Hal9000"
+      EMOJI: ":hal_9000:"
+      SLACK_WEBHOOK_URL: ${self:custom.ssm.SLACK_WEBHOOK_URL} 
+      OMDB_API_KEY: ${self:custom.ssm.OMDB_API_KEY}
     events:
       - http:
           path: /

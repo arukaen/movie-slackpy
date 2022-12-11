@@ -3,11 +3,11 @@ import requests
 import json
 import os
 
-bot_name = os.environ.get('BOT_NAME', 'Steve')
-emoji = os.environ.get('EMOJI', ':movie_camera:')
+bot_name = os.environ.get('BOT_NAME', 'Meseeks')
+emoji = os.environ.get('EMOJI', ":movie_camera:")
 omdb_key = os.environ.get('OMDB_API_KEY')
 omdb_url = 'https://www.omdbapi.com/'
-slack_webhook_url = os.environ.get('')
+slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL')
 
 def omdb_query(movie):
     payload = {'apikey': omdb_key, 't': movie}
@@ -40,7 +40,7 @@ def handler(event, context):
   results = omdb_query(search_term)
 
   response_data = {
-        "username": bot_name
+        "username": bot_name,
         "icon_emoji": emoji,
         "channel": channel_id,
         "attachments": [{
