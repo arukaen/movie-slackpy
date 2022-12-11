@@ -21,6 +21,8 @@ custom:
   prune:
     automatic: true
     number: 3      
+  pythonRequirements:
+    dockerizePip: non-linux
 
 functions:
   main:
@@ -43,3 +45,4 @@ package:
 plugins:
   - serverless-domain-manager
   - serverless-prune-plugin
+  - serverless-python-requirements
