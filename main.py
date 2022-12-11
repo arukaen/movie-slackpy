@@ -23,13 +23,6 @@ def handler(event, context):
       'body': 'Method Not Allowed',
     }
 
-  # Ensure the request content-type is "application/x-www-form-urlencoded"
-  if event['headers']['content-type'] != 'application/x-www-form-urlencoded':
-    return {
-      'statusCode': 400,
-      'body': 'Bad Request',
-    }
-
   # Parse the form data
   body = event['body']
   parsed = dict(parse_qsl(body))
@@ -76,7 +69,6 @@ def handler(event, context):
     }
 
   return_content = requests.post(slack_webhook_url, json=response_data, headers={'Content-Type': 'application/json'})
-
 
   # Return a success response
   return {
