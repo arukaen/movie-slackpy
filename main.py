@@ -43,7 +43,7 @@ def handler(event, context):
             "image_url": results["Poster"],
             "fields": [{
                 "title": "Rating",
-                "value": rating,
+                "value": results["imdbRating"],
                 "short": True,
             },
             {
