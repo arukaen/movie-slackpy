@@ -16,13 +16,45 @@ if slack_webhook_url is None:
     raise ValueError('Missing required environment variable: SLACK_WEBHOOK_URL')
 
 def omdb_query(movie):
+    """Queries the Open Movie Database (OMDB) API for information about the given movie.
+
+    Args:
+        movie (str): The title of the movie to search for.
+
+    Returns:
+        dict: A dictionary containing the specified fields from the OMDB API response.
+
+    Raises:
+        requests.exceptions.RequestException: If an error occurs while making the request to the OMDB API.
+    """
+
     payload = {'apikey': omdb_key, 't': movie}
-    response = requests.get(omdb_url, params=payload)
-    response.raise_for_status()
-    result = response.json()
+
+    try:
+        response = requests.get(omdb_url, params=payload)
+        response.raise_for_status()
+        result = response.json()
+    except requests.exceptions.RequestException as error:
+        print('An error occurred while making the request: {}'.format(error))
+        return None
+
+    fields = [
+        'Title',
+        'imdbID',
+        'Poster',
+        'imdbRating',
+        'imdbVotes',
+        'Year',
+        'Runtime',
+        'Director',
+        'Actors',
+        'Plot',
+    ]
+    data = {field: result[field] for field in fields}
 
     print('OMDB query successful for movie: {}'.format(movie))
-    return result
+    return data
+
 
 def handler(event, context):
     # Ensure the request method is POST
