@@ -11,7 +11,10 @@ slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL')
 
 def omdb_query(movie):
     payload = {'apikey': omdb_key, 't': movie}
+    print("Making a request to OMDB API")
     response = requests.get(omdb_url, params=payload)
+    print("Received response with status code: {}".format(response.status_code))
+
     if response.ok:
         result = json.loads(response.text)
         return result
@@ -19,23 +22,23 @@ def omdb_query(movie):
         raise Exception('OMDB query failed: {}'.format(response.text))
 
 def handler(event, context):
-  # Ensure the request method is POST
-  if event['httpMethod'] != 'POST':
-    return {
-      'statusCode': 405,
-      'body': 'Method Not Allowed',
-    }
+    # Ensure the request method is POST
+    if event['httpMethod'] != 'POST':
+        return {
+            'statusCode': 405,
+            'body': 'Method Not Allowed',
+        }
 
-  # Parse the form data
-  body = event['body']
-  parsed = dict(parse_qsl(body))
+    # Parse the form data
+    body = event['body']
+    parsed = dict(parse_qsl(body))
 
-  search_term = parsed["text"]
-  channel_id = parsed["channel_id"]
+    search_term = parsed["text"]
+    channel_id = parsed["channel_id"]
 
-  results = omdb_query(search_term)
+    results = omdb_query(search_term)
 
-  response_data = {
+    response_data = {
         "username": bot_name,
         "icon_emoji": emoji,
         "channel": channel_id,
@@ -76,10 +79,14 @@ def handler(event, context):
         }]
     }
 
-  requests.post(slack_webhook_url, json=response_data, headers={'Content-Type': 'application/json'})
+    try:
+        requests.post(slack_webhook_url, json=response_data, headers={'Content-Type': 'application/json'})
+    except requests.exceptions.RequestException as e:
+        # Handle exceptions here
+        print("Error occurred while sending data to Slack: {}".format(e))
 
-  # Return a success response
-  return {
-    'statusCode': 200,
-    'body': '',
-  }
+    # Return a success response
+    return {
+        'statusCode': 200,
+        'body': '',
+    }
