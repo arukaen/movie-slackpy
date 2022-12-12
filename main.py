@@ -57,6 +57,20 @@ def omdb_query(movie):
 
 
 def handler(event, context):
+    """
+    Request handler for an AWS Lambda function.
+    
+    Args:
+        event: A dictionary containing data about the HTTP request.
+        context: A dictionary containing runtime information for the Lambda function.
+        
+    Returns:
+        A dictionary containing the response data.
+        
+    Raises:
+        requests.exceptions.RequestException: If there is an error while sending the data to Slack.
+    """
+        
     # Ensure the request method is POST
     if event['httpMethod'] != 'POST':
         return {
