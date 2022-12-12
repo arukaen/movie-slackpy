@@ -64,6 +64,11 @@ def handler(event, context):
             {
                 "title": "Actors",
                 "value": results["Actors"],
+            },
+            {
+                "title": "Overview",
+                "value": results["Plot"],
+                "short": False,
             }]
         }]
     }
