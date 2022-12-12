@@ -12,11 +12,8 @@ slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL')
 def omdb_query(movie):
     payload = {'apikey': omdb_key, 't': movie}
     response = requests.get(omdb_url, params=payload)
-    if response.ok:
-        result = json.loads(response.text)
-        return result
-    else:
-        raise Exception('OMDB query failed: {}'.format(response.text))
+    result = json.loads(response.text)
+    return result
 
 def handler(event, context):
   # Ensure the request method is POST
@@ -43,35 +40,11 @@ def handler(event, context):
             "title": results["Title"],
             "title_link": "https://www.imdb.com/title/" + results["imdbID"],
             "color": "#7B00FF",
-            "image_url": results["Poster"],
-            "fields": [{
-                "title": "Rating",
-                "value": results["imdbRating"] + ' (' + results["imdbVotes"] + ' votes)',
-                "short": True,
-            },
-            {
-                "title": "Year",
-                "value": results["Year"],
-                "short": True,
-            },
-            {
-                "title": "Runtime",
-                "value": results["Runtime"],
-                "short": True,
-            },
-            {
-                "title": "Director",
-                "value": results["Director"],
-                "short": True,
-            },
-            {
-                "title": "Actors",
-                "value": results["Actors"],
-            }]
+            "image_url": results["Poster"]
         }]
     }
 
-  return_content = requests.post(slack_webhook_url, json=response_data, headers={'Content-Type': 'application/json'})
+  requests.post(slack_webhook_url, json=response_data, headers={'Content-Type': 'application/json'})
 
   # Return a success response
   return {
