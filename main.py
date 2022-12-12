@@ -40,7 +40,31 @@ def handler(event, context):
             "title": results["Title"],
             "title_link": "https://www.imdb.com/title/" + results["imdbID"],
             "color": "#7B00FF",
-            "image_url": results["Poster"]
+            "image_url": results["Poster"],
+            "fields": [{
+                "title": "Rating",
+                "value": results["imdbRating"] + ' (' + results["imdbVotes"] + ' votes)',
+                "short": True,
+            },
+            {
+                "title": "Year",
+                "value": results["Year"],
+                "short": True,
+            },
+            {
+                "title": "Runtime",
+                "value": results["Runtime"],
+                "short": True,
+            },
+            {
+                "title": "Director",
+                "value": results["Director"],
+                "short": True,
+            },
+            {
+                "title": "Actors",
+                "value": results["Actors"],
+            }]
         }]
     }
 
