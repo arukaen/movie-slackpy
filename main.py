@@ -9,17 +9,20 @@ omdb_key = os.environ.get('OMDB_API_KEY')
 omdb_url = 'https://www.omdbapi.com/'
 slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL')
 
+# Check if the required environment variables are set
+if omdb_key is None:
+    raise ValueError('Missing required environment variable: OMDB_API_KEY')
+if slack_webhook_url is None:
+    raise ValueError('Missing required environment variable: SLACK_WEBHOOK_URL')
+
 def omdb_query(movie):
     payload = {'apikey': omdb_key, 't': movie}
-    print("Making a request to OMDB API")
     response = requests.get(omdb_url, params=payload)
-    print("Received response with status code: {}".format(response.status_code))
+    response.raise_for_status()
+    result = response.json()
 
-    if response.ok:
-        result = json.loads(response.text)
-        return result
-    else:
-        raise Exception('OMDB query failed: {}'.format(response.text))
+    print('OMDB query successful for movie: {}'.format(movie))
+    return result
 
 def handler(event, context):
     # Ensure the request method is POST
