@@ -160,12 +160,26 @@ def handler(event, context):
     body = event['body']
     parsed = dict(parse_qsl(body))
 
+    # Ensure the required fields are present
+    required_fields = ["text", "channel_id"]
+    for field in required_fields:
+        if field not in parsed:
+            return {
+                'statusCode': 400,
+                'body': f"Missing required field: {field}"
+            }
+
     search_term = parsed["text"]
     channel_id = parsed["channel_id"]
 
-    results = omdb_query(search_term)
-
-    send_slack_message(results, channel_id)
+    try:
+        results = omdb_query(search_term)
+        send_slack_message(results, channel_id)
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'body': str(e)
+        }
 
     # Return a success response
     return {
