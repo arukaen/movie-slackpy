@@ -55,6 +55,84 @@ def omdb_query(movie):
     print('OMDB query successful for movie: {}'.format(movie))
     return data
 
+def send_slack_message(movie_data, slack_channel):
+    """
+    Sends the given data to Slack using a webhook.
+
+    Args:
+        movie_data: The data to be sent to Slack.
+        slack_channel: The Slack channel to send the data to.
+
+    Returns:
+        The response from the POST request, or None if an error occurred.
+    """    
+    # Send a message to Slack with the requested movie
+    
+    response_data = {
+        "username": bot_name,
+        "icon_emoji": emoji,
+        "channel": slack_channel,
+        "attachments": [{
+            "title": movie_data["Title"],
+            "title_link": "https://www.imdb.com/title/" + movie_data["imdbID"],
+            "color": "#7B00FF",
+            "image_url": movie_data["Poster"],
+            "fields": [{
+                "title": "Rating",
+                "value": movie_data["imdbRating"] + ' (' + movie_data["imdbVotes"] + ' votes)',
+                "short": True,
+            },
+            {
+                "title": "Year",
+                "value": movie_data["Year"],
+                "short": True,
+            },
+            {
+                "title": "Runtime",
+                "value": movie_data["Runtime"],
+                "short": True,
+            },
+            {
+                "title": "Director",
+                "value": movie_data["Director"],
+                "short": True,
+            },
+            {
+                "title": "Actors",
+                "value": movie_data["Actors"],
+            },
+            {
+                "title": "Overview",
+                "value": movie_data["Plot"],
+                "short": False,
+            }]
+        }]
+    }
+
+    try:
+        response = requests.post(
+            slack_webhook_url,
+            json=response_data,
+            headers={"Content-Type": "application/json"},
+        )
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred while sending data to Slack: {e}")
+        return None
+    except requests.exceptions.HTTPError as e:
+        print(f"An HTTP error occurred while sending data to Slack: {e}")
+        return None
+    except requests.exceptions.ConnectionError as e:
+        print(f"A connection error occurred while sending data to Slack: {e}")
+        return None
+    except requests.exceptions.Timeout as e:
+        print(f"The request timed out while sending data to Slack: {e}")
+        return None
+
+    print("Data successfully sent to Slack")
+    return response
+
+
 
 def handler(event, context):
     """
@@ -87,52 +165,7 @@ def handler(event, context):
 
     results = omdb_query(search_term)
 
-    response_data = {
-        "username": bot_name,
-        "icon_emoji": emoji,
-        "channel": channel_id,
-        "attachments": [{
-            "title": results["Title"],
-            "title_link": "https://www.imdb.com/title/" + results["imdbID"],
-            "color": "#7B00FF",
-            "image_url": results["Poster"],
-            "fields": [{
-                "title": "Rating",
-                "value": results["imdbRating"] + ' (' + results["imdbVotes"] + ' votes)',
-                "short": True,
-            },
-            {
-                "title": "Year",
-                "value": results["Year"],
-                "short": True,
-            },
-            {
-                "title": "Runtime",
-                "value": results["Runtime"],
-                "short": True,
-            },
-            {
-                "title": "Director",
-                "value": results["Director"],
-                "short": True,
-            },
-            {
-                "title": "Actors",
-                "value": results["Actors"],
-            },
-            {
-                "title": "Overview",
-                "value": results["Plot"],
-                "short": False,
-            }]
-        }]
-    }
-
-    try:
-        requests.post(slack_webhook_url, json=response_data, headers={'Content-Type': 'application/json'})
-    except requests.exceptions.RequestException as e:
-        # Handle exceptions here
-        print("Error occurred while sending data to Slack: {}".format(e))
+    send_slack_message(results, channel_id)
 
     # Return a success response
     return {
