@@ -1,4 +1,10 @@
-<img align="right" src="http://i.imgur.com/Xk1qB3A.png" height="389" width="176">
+<h1 align="center">
+  <br>
+  <img src="https://i.imgur.com/Zx3BTJG.png" alt="Logo" height="312" width="312"/>
+  <br>
+  <span style="color:#0a4359;">Movie Bot</span>
+  <br>
+</h1>
 
 # movie-slackpy : Custom command for Slack
 
@@ -20,6 +26,7 @@ The following environment variables need to be set!
 
 ## Deploy with Serverless + AWS
 [![Deploy](https://assets-global.website-files.com/60acbb950c4d6606963e1fed/611631cd314b2abec6c29ec0_bolt.svg)](https://www.serverless.com/framework/docs/getting-started)
+[![Deploy](
 
 
 ## How to contribute !
