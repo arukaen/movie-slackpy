@@ -26,8 +26,6 @@ The following environment variables need to be set!
 
 ## Deploy with Serverless + AWS
 [![Deploy](https://assets-global.website-files.com/60acbb950c4d6606963e1fed/611631cd314b2abec6c29ec0_bolt.svg)](https://www.serverless.com/framework/docs/getting-started)
-[![Deploy](
-
 
 ## How to contribute !
 I am open to all feedback, bug reports, and pull requests!
