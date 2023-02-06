@@ -336,10 +336,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@^2.1303.0, aws-sdk@^2.1307.0:
-  version "2.1307.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1307.0.tgz#387e0ca566d135a28b1fa0397edfd1a3f45e8ea6"
-  integrity sha512-fRGMLrFrndcl7VXp6ynbFry4S+eO360cIw5sdfI2ZdC86aQlg7vSh5WAdARMExnwKCeaoiGhRe1fTBS3WoLwAw==
+aws-sdk@^2.1303.0, aws-sdk@^2.1308.0:
+  version "2.1309.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1309.0.tgz#2bc6e25af6da39a6c9c48080a43b35596a58a2c5"
+  integrity sha512-EC/EtDDWDoJnovvmNlJqvojNJMbFZ78HESzgFiond5vzPS+FIWnWgGJ1ZVvIWU9O4X5I8cEMckwHCTfVYNcZxA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2405,12 +2405,12 @@ semver@^7.3.5, semver@^7.3.7, semver@^7.3.8:
   dependencies:
     lru-cache "^6.0.0"
 
-serverless-domain-manager@^6.2.3:
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/serverless-domain-manager/-/serverless-domain-manager-6.2.3.tgz#34d34be4ba560ed501413f1e710172cb14a46c58"
-  integrity sha512-K3tbI4ll96SumQhhrUMFifa78IHGrp2GcV2teayFLeax7lcdW7cZq8D0b9yD/QxhLinh8YxRDaBvKZh34NxKSQ==
+serverless-domain-manager@^6.2.4:
+  version "6.2.4"
+  resolved "https://registry.yarnpkg.com/serverless-domain-manager/-/serverless-domain-manager-6.2.4.tgz#9b2861c9f103bf89db51d32bc47a8bb5248d5559"
+  integrity sha512-VP3hCQA7EjVrB9grIpD0NU7ylzJ9GqK9z2jV5siHHJbP+Ap9yBUyFyM3fz7otiaQxZy2yaQXXnqgoF1hznFO6Q==
   dependencies:
-    aws-sdk "^2.1307.0"
+    aws-sdk "^2.1308.0"
 
 serverless-prune-plugin@^2.0.1:
   version "2.0.1"
