@@ -6,7 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "serverless": "^3.27.0",
-    "serverless-domain-manager": "^6.3.1",
+    "serverless-domain-manager": "^6.4.1",
     "serverless-prune-plugin": "^2.0.1",
     "serverless-python-requirements": "^6.0.0"
   }
