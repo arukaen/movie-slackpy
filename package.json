@@ -8,6 +8,6 @@
     "serverless": "^3.35.2",
     "serverless-domain-manager": "^7.1.2",
     "serverless-prune-plugin": "^2.0.2",
-    "serverless-python-requirements": "^6.0.0"
+    "serverless-python-requirements": "^6.0.1"
   }
 }
