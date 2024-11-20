@@ -29,7 +29,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           
       - name: Install Serverless Framework
-        run: npm install -g serverless
+        run: npm install -g serverless@3
         
       - name: Configure Serverless
         run: sls config credentials --provider aws --key ${{ secrets.AWS_TF_GH_ACCESS_KEY }} --secret ${{ secrets.AWS_TF_GH_SECRET_ACCESS_KEY }}
