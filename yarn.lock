@@ -4077,10 +4077,10 @@ serverless-domain-manager@^7.1.2:
     "@aws-sdk/smithy-client" "^3.370.0"
     "@aws-sdk/util-retry" "^3.370.0"
 
-serverless-prune-plugin@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/serverless-prune-plugin/-/serverless-prune-plugin-2.0.2.tgz#803fb5450a17775ab7cb7912da94d9b64ae81b78"
-  integrity sha512-tW1Q8MAVmhW8KQN+e0AsSVsb9nmRWWj28xBjMwvVC3FbammmtUJT+5nRpmjxJZ6/K/j3OV1Rx8b32md71BwkYQ==
+serverless-prune-plugin@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/serverless-prune-plugin/-/serverless-prune-plugin-2.1.0.tgz#0067241482259315a89c849233f1b96e63efc0de"
+  integrity sha512-++22inpEFECgfw+DR2cRn8huxzcsQVgSii4Rjp5q6cPxKo2eKmFc0dfMaJ81DwQoHEnVhfVipIlGdodkauOm1g==
   dependencies:
     bluebird "^3.7.2"
 
